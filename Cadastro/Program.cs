@@ -1,4 +1,8 @@
-﻿class Program
+﻿using System.Linq.Expressions;
+using System.Security.Principal;
+
+// PROGRAMA PRINCIPAL
+class Program
 {
     static void Main()
     {
@@ -11,20 +15,31 @@
 
 
         //List<BankAccount> accounts = new List<BankAccount>{account1, account2};
+        // OU
         List<BankAccount> accounts = [account1, account2];
+        DataStore<int> store = new DataStore<int>();
+        store.value = 40;
+        Console.WriteLine();
+
 
         foreach (var account in accounts)
         {
-            Console.WriteLine(account);
+            Console.WriteLine(account.getBalance());
         }
+    }
+    static int Sum(int a, int b)
+    {
+        return a + b;
     }
 }
 
+// INTERFACE
 interface ILogger
 {
     void Log(string message);
 }
 
+// CLASSE IMPLEMENTANDO INTERFACE
 class ConsoleLogger : ILogger
 {
     public void Log(string message)
@@ -33,12 +48,27 @@ class ConsoleLogger : ILogger
     }
 }
 
+// generics no C#
+class DataStore<T>
+{
+    public T value {get; set;}
+}
 
+/*CLASSE*/
 class BankAccount
 {
     private string name;
     private decimal balance;
     private ILogger logger;
+
+    public string GetName()
+    {
+        return this.name;
+    }
+    public decimal getBalance()
+    {
+        return this.balance;
+    }
 
     public BankAccount(string name, decimal balance, ILogger logger)
     {
