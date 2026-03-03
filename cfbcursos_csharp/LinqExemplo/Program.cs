@@ -17,7 +17,6 @@
         int primeiroOuZero = numbers.FirstOrDefault();
         bool existeValoresPares = numbers.Any(n => n % 2 == 0);
         bool todosPositivos = numbers.All(n => n > 0);
-
         Console.WriteLine("valores menores que 10");
         foreach (var val in valoresMenoresQue10){Console.WriteLine(val);}
     }
